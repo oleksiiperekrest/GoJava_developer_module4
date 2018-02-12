@@ -7,6 +7,8 @@
     <groupId>GoJava_developer</groupId>
     <artifactId>GoJava_developer_module4</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <name>Servlets</name>
+    <packaging>war</packaging>
 
     <dependencies>
         <dependency>
@@ -60,7 +62,7 @@
                 <version>2.2</version>
                 <configuration>
                     <path>/</path>
-                    <port>8088</port>
+                    <port>8087</port>
                 </configuration>
             </plugin>
         </plugins>
