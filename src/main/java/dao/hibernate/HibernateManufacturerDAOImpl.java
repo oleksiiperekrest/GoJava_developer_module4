@@ -1,8 +1,6 @@
 package dao.hibernate;
 
 import dao.ManufacturerDAO;
-import dao.ManufacturerDAO;
-import model.Manufacturer;
 import model.Manufacturer;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

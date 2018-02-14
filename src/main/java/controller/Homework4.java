@@ -2,8 +2,6 @@ package controller;
 
 import dao.ManufacturerDAO;
 import dao.ProductDAO;
-import dao.hibernate.HibernateManufacturerDAOImpl;
-import dao.hibernate.HibernateProductDAOImpl;
 import model.Manufacturer;
 import model.Product;
 
