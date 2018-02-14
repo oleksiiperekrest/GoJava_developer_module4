@@ -13,28 +13,31 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
-@WebServlet("/add_product")
-public class AddProductServlet extends HttpServlet {
+@WebServlet("/edit_product")
+public class EditProductServlet extends HttpServlet {
+
+    private UUID id;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Manufacturer> manufacturers = Storage.getInstance().getManufacturers();
+        id = UUID.fromString(req.getParameter("id"));
+        Product product = Storage.getInstance().getProductDAO().getById(id);
+
+        req.setAttribute("product", product);
         req.setAttribute("manufacturers", manufacturers);
-        req.setAttribute("mode", "add");
+        req.setAttribute("mode", "edit");
         req.getRequestDispatcher("/jsp/edit_product.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
-//        for(String paramName : req.getParameterMap().keySet()) {
-//            System.out.println(paramName + "=" + req.getParameter(paramName));
-//        }
-
         Map<String, String[]> parameters = req.getParameterMap();
 
-        Product product = new Product();
+        Product product = Storage.getInstance().getProductDAO().getById(id);
         product.setName(parameters.get("name")[0]);
         product.setPrice(new BigDecimal(parameters.get("price")[0]));
         List<Manufacturer> manufacturers = Storage.getInstance().getManufacturers();
@@ -45,7 +48,7 @@ public class AddProductServlet extends HttpServlet {
                 break;
             }
         }
-        controller.Storage.getInstance().getProductDAO().save(product);
+        Storage.getInstance().getProductDAO().update(product);
         Storage.getInstance().refreshProducts();
         resp.sendRedirect("/products");
     }

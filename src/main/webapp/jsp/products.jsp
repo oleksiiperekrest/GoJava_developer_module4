@@ -2,6 +2,7 @@
 
 <%@ page import="java.util.List" %>
 <%@ page import="model.Product" %>
+<%@ page import="java.math.BigDecimal" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <h2 style="font-weight: bold;">Products</h2>
@@ -28,6 +29,7 @@
     <tr>
         <th>UUID</th>
         <th>Name</th>
+        <th>Price</th>
         <th>Manufacturer</th>
         <th>Edit</th>
         <th>Delete</th>
@@ -38,11 +40,13 @@
     for (Product product : products) {
         String id = product.getId().toString();
         String name = product.getName();
+        BigDecimal price = product.getPrice();
         String manufacturerName = product.getManufacturer().getName();
 
         out.println("<tr>");
         out.println("<td>" + id + "</td>");
         out.println("<td>" + name + "</td>");
+        out.println("<td>" + price + "</td>");
         out.println("<td>" + manufacturerName + "</td>");
         out.println("<td> <a href = \"/edit_product?id=" + id +"\">Edit</a></td>");
         out.println("<td> <a href = \"/delete_product?id=" + id +"\">Delete</a></td>");
@@ -53,14 +57,8 @@
 </table>
 
 <div align="right">
-    <a style="font-weight: initial; font-family: arial, sans-serif" href="/edit_product">Add Product</a>
+    <a style="font-weight: initial; font-family: arial, sans-serif" href="/add_product">Add Product</a>
 </div>
-
-<c:if test = "${add}">
-    <h1>ADD</h1>
-
-</c:if>
-
 
 <div align="left">
     <a style="font-weight: bold; font-family: arial, sans-serif" href="/index">Back to index</a>

@@ -1,22 +1,19 @@
 <%@ page import="model.Manufacturer" %>
 <%@ page import="java.util.List" %>
+<%@ page import="model.Product" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 
 
-
-<%--<%--%>
-    <%--String action = request.getAttribute("action").toString();--%>
-<%--%>--%>
-<c:if test = "${action == 'add'}">
+<c:if test = "${mode == 'add'}">
 
     <h1 style="font-weight: bold;">ADD PRODUCT</h1>
-    <form action="/edit_product">
+    <form action="/add_product" method="POST">
         Name:<br>
         <input type="text" name="name" required>
         <br>
         Price:<br>
-        <input type="number" name="price" required>
+        <input type="number" name="price" min="0" step="0.01"  required>
         <br>
         Manufacturer:<br>
         <select name="manufacturer">
@@ -32,9 +29,34 @@
     </form>
 </c:if>
 
-<c:if test = "${action == 'edit'}">
+<c:if test = "${mode == 'edit'}">
 
     <h1 style="font-weight: bold;">EDIT PRODUCT</h1>
+    <form action="/edit_product" method="POST">
+
+        <%
+            Product product = (Product) request.getAttribute("product");
+        %>
+
+        Name:<br>
+        <input type="text" value="<%out.print(product.getName());%>" name="name" required>
+        <br>
+        Price:<br>
+        <input type="number" value="<%out.print(product.getPrice());%>" name="price" min="0" step="0.01"  required>
+        <br>
+        Manufacturer:<br>
+        <select name="manufacturer"> value="<%out.print(product.getManufacturer().getName());%>
+            <%
+                List<Manufacturer> manufacturers = (List<Manufacturer> ) request.getAttribute("manufacturers");
+                for (Manufacturer manufacturer : manufacturers) {
+                    out.println("<option value=\"" + manufacturer.getName() + "\">" + manufacturer.getName() + "</option>");
+                }
+            %>
+        </select>
+        <br><br>
+        <input type="submit" value="Save product">
+    </form>
+
 </c:if>
 
 
