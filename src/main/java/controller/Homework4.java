@@ -13,22 +13,14 @@ import java.util.List;
 import java.util.Map;
 
 public class Homework4 {
-    static ProductDAO productDAO = new HibernateProductDAOImpl();
-    static ManufacturerDAO manufacturerDAO = new HibernateManufacturerDAOImpl();
+    static ProductDAO productDAO = Storage.getInstance().getProductDAO();
+    static ManufacturerDAO manufacturerDAO = Storage.getInstance().getManufacturerDAO();
 
     public static void main(String[] args) {
 
-
-        initDataBase(productDAO, manufacturerDAO);
+//        initDataBase(productDAO, manufacturerDAO);
 //        listAll(productDAO, manufacturerDAO);
-    }
 
-    public static ProductDAO getProductDAO() {
-        return productDAO;
-    }
-
-    public static ManufacturerDAO getManufacturerDAO() {
-        return manufacturerDAO;
     }
 
     private static void listAll(ProductDAO productDAO, ManufacturerDAO manufacturerDAO) {
