@@ -43,8 +43,7 @@ public class HibernateProductDAOImpl implements ProductDAO {
     public void update(Product product) {
         Session session = this.sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        session.delete(product);
-        session.save(product);
+        session.update(product);
         transaction.commit();
         session.close();
     }

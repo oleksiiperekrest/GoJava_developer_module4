@@ -45,8 +45,7 @@ public class HibernateManufacturerDAOImpl implements ManufacturerDAO {
     public void update(Manufacturer manufacturer) {
         Session session = this.sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        session.delete(manufacturer);
-        session.save(manufacturer);
+        session.update(manufacturer);
         transaction.commit();
         session.close();
     }
