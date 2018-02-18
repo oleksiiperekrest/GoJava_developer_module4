@@ -30,6 +30,6 @@ public class AddManufacturerServlet extends HttpServlet {
 
         Storage.getInstance().getManufacturerDAO().save(manufacturer);
         Storage.getInstance().refreshManufacturers();
-        resp.sendRedirect("/manufacturers");
+        resp.sendRedirect(req.getContextPath() + "/manufacturers");
     }
 }

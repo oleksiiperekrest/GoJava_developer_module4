@@ -1,7 +1,6 @@
-package controller;
+package utils;
 
-import dao.ManufacturerDAO;
-import dao.ProductDAO;
+import controller.Storage;
 import model.Manufacturer;
 import model.Product;
 
@@ -10,46 +9,44 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Homework4 {
-    static ProductDAO productDAO = Storage.getInstance().getProductDAO();
-    static ManufacturerDAO manufacturerDAO = Storage.getInstance().getManufacturerDAO();
-
+public class DataBaseUtils {
     public static void main(String[] args) {
 
-//        initDataBase(productDAO, manufacturerDAO);
-//        listAll(productDAO, manufacturerDAO);
+//        listAll();
 
+//        initDataBase();
+
+//        clearDataBase();
     }
 
-    private static void listAll(ProductDAO productDAO, ManufacturerDAO manufacturerDAO) {
-        List<Manufacturer> manufacturers = manufacturerDAO.getAll();
+    private static void listAll() {
+        List<Manufacturer> manufacturers = Storage.getInstance().getManufacturerDAO().getAll();
         for (Manufacturer manufacturer : manufacturers) {
             System.out.println(manufacturer);
         }
-        List<Product> products = productDAO.getAll();
+        List<Product> products = Storage.getInstance().getProductDAO().getAll();
         for (Product product : products) {
             System.out.println(product);
         }
     }
 
-
-    private static void initDataBase(ProductDAO productDAO, ManufacturerDAO manufacturerDAO) {
+    public static void initDataBase() {
 
         Manufacturer manufacturer = new Manufacturer();
 
         manufacturer.setName("Auchan");
-        manufacturerDAO.save(manufacturer);
+        Storage.getInstance().getManufacturerDAO().save(manufacturer);
 
         manufacturer.setName("Jysk");
-        manufacturerDAO.save(manufacturer);
+        Storage.getInstance().getManufacturerDAO().save(manufacturer);
 
         manufacturer.setName("Roshen");
-        manufacturerDAO.save(manufacturer);
+        Storage.getInstance().getManufacturerDAO().save(manufacturer);
 
         manufacturer.setName("Procter&Gamble");
-        manufacturerDAO.save(manufacturer);
+        Storage.getInstance().getManufacturerDAO().save(manufacturer);
 
-        List<Manufacturer> manufacturers = manufacturerDAO.getAll();
+        List<Manufacturer> manufacturers = Storage.getInstance().getManufacturerDAO().getAll();
         Map<String, Manufacturer> manufacturerMap = new HashMap<String, Manufacturer>();
         for (Manufacturer manufacturer1 : manufacturers) {
             manufacturerMap.put(manufacturer1.getName(), manufacturer1);
@@ -60,32 +57,49 @@ public class Homework4 {
         product.setName("Cheese");
         product.setPrice(new BigDecimal("250.00"));
         product.setManufacturer(manufacturerMap.get("Auchan"));
-        productDAO.save(product);
+        Storage.getInstance().getProductDAO().save(product);
 
         product.setName("Oil");
         product.setPrice(new BigDecimal("110.00"));
         product.setManufacturer(manufacturerMap.get("Auchan"));
-        productDAO.save(product);
+        Storage.getInstance().getProductDAO().save(product);
 
         product.setName("Mattress");
         product.setPrice(new BigDecimal("1420.00"));
         product.setManufacturer(manufacturerMap.get("Jysk"));
-        productDAO.save(product);
+        Storage.getInstance().getProductDAO().save(product);
 
         product.setName("Cake");
         product.setPrice(new BigDecimal("120.00"));
         product.setManufacturer(manufacturerMap.get("Roshen"));
-        productDAO.save(product);
+        Storage.getInstance().getProductDAO().save(product);
 
         product.setName("Toothpaste");
         product.setPrice(new BigDecimal("33.00"));
         product.setManufacturer(manufacturerMap.get("Procter&Gamble"));
-        productDAO.save(product);
+        Storage.getInstance().getProductDAO().save(product);
 
         product.setName("Shampoo");
         product.setPrice(new BigDecimal("67.00"));
         product.setManufacturer(manufacturerMap.get("Procter&Gamble"));
-        productDAO.save(product);
+        Storage.getInstance().getProductDAO().save(product);
+        Storage.getInstance().refreshManufacturers();
+        Storage.getInstance().refreshProducts();
+
     }
 
+    public static void clearDataBase() {
+
+        for (Product product : Storage.getInstance().getProducts()) {
+            Storage.getInstance().getProductDAO().delete(product);
+        }
+
+        Storage.getInstance().refreshManufacturers();
+        for (Manufacturer manufacturer : Storage.getInstance().getManufacturers()) {
+            Storage.getInstance().getManufacturerDAO().delete(manufacturer);
+        }
+
+        Storage.getInstance().refreshManufacturers();
+        Storage.getInstance().refreshProducts();
+    }
 }

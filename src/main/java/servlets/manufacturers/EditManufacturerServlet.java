@@ -38,6 +38,6 @@ public class EditManufacturerServlet extends HttpServlet {
         Storage.getInstance().getManufacturerDAO().update(manufacturer);
         Storage.getInstance().refreshManufacturers();
         Storage.getInstance().refreshProducts();
-        resp.sendRedirect("/manufacturers");
+        resp.sendRedirect(req.getContextPath() + "/manufacturers");
     }
 }

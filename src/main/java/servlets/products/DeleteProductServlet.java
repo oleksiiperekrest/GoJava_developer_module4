@@ -19,7 +19,7 @@ public class DeleteProductServlet extends HttpServlet {
         Product product = Storage.getInstance().getProductDAO().getById(id);
         Storage.getInstance().getProductDAO().delete(product);
         Storage.getInstance().refreshProducts();
-        resp.sendRedirect("/products");
+        resp.sendRedirect(req.getContextPath() + "/products");
     }
 
 }

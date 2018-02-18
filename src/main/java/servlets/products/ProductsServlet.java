@@ -17,7 +17,10 @@ public class ProductsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Product> products = Storage.getInstance().getProducts();
+        int manufacturersSize = Storage.getInstance().getManufacturers().size();
+
         req.setAttribute("products", products);
+        req.setAttribute("manufacturersSize", manufacturersSize);
         req.getRequestDispatcher("/jsp/products.jsp").forward(req, resp);
     }
 }

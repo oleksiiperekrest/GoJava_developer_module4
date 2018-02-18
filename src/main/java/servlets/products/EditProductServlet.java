@@ -50,6 +50,6 @@ public class EditProductServlet extends HttpServlet {
         }
         Storage.getInstance().getProductDAO().update(product);
         Storage.getInstance().refreshProducts();
-        resp.sendRedirect("/products");
+        resp.sendRedirect(req.getContextPath() + "/products");
     }
 }

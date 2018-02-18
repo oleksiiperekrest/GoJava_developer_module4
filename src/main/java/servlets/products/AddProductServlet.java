@@ -47,6 +47,6 @@ public class AddProductServlet extends HttpServlet {
         }
         controller.Storage.getInstance().getProductDAO().save(product);
         Storage.getInstance().refreshProducts();
-        resp.sendRedirect("/products");
+        resp.sendRedirect(req.getContextPath() + "/products");
     }
 }

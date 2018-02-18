@@ -2,7 +2,6 @@ package servlets.manufacturers;
 
 import controller.Storage;
 import model.Manufacturer;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

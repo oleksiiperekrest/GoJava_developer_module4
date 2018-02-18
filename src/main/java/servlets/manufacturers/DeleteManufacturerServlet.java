@@ -21,7 +21,7 @@ public class DeleteManufacturerServlet extends HttpServlet {
         Storage.getInstance().getManufacturerDAO().delete(manufacturer);
         Storage.getInstance().refreshManufacturers();
         Storage.getInstance().refreshProducts();
-        resp.sendRedirect("/manufacturers");
+        resp.sendRedirect(req.getContextPath() + "/manufacturers");
     }
 
 }

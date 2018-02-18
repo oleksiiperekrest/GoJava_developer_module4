@@ -7,7 +7,7 @@
     <groupId>GoJava_developer</groupId>
     <artifactId>GoJava_developer_module4</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>Servlets</name>
+    <name>servlets</name>
     <packaging>war</packaging>
 
     <dependencies>
@@ -37,7 +37,7 @@
     </dependencies>
 
     <build>
-        <finalName>Servlets</finalName>
+        <finalName>servlets</finalName>
         <plugins>
 
             <plugin>
