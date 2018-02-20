@@ -1,6 +1,6 @@
 package servlets.products;
 
-import controller.Storage;
+import storage.Storage;
 import model.Manufacturer;
 import model.Product;
 
@@ -45,7 +45,7 @@ public class AddProductServlet extends HttpServlet {
                 break;
             }
         }
-        controller.Storage.getInstance().getProductDAO().save(product);
+        storage.Storage.getInstance().getProductDAO().save(product);
         Storage.getInstance().refreshProducts();
         resp.sendRedirect(req.getContextPath() + "/products");
     }

@@ -1,6 +1,6 @@
 package servlets.products;
 
-import controller.Storage;
+import storage.Storage;
 import model.Product;
 
 import javax.servlet.ServletException;

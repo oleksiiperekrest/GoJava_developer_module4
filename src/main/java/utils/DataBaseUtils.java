@@ -1,6 +1,6 @@
 package utils;
 
-import controller.Storage;
+import storage.Storage;
 import model.Manufacturer;
 import model.Product;
 

@@ -1,6 +1,6 @@
 package servlets.manufacturers;
 
-import controller.Storage;
+import storage.Storage;
 import model.Manufacturer;
 
 import javax.servlet.ServletException;

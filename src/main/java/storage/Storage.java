@@ -1,4 +1,4 @@
-package controller;
+package storage;
 
 import dao.ManufacturerDAO;
 import dao.ProductDAO;
